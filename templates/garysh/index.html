@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accounts</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h2>Hello {{ user.username }}! <a href="{% url 'garysh:logout' %}">Logout</a> </h2>
+    {% else %}
+        <h2><a href="{% url 'garysh:login' %}">Login/Authorize</a> </h2>
+    {% endif %}
+    {% if all_accounts %}
+        <div>
+            {% for acc in all_accounts %}
+                <h3>{{ acc.username }}, {{ acc.full_name }}; <a href="{% url 'garysh:edit' acc.id%}">Edit</a> <a href="{% url 'garysh:delete' acc.id %}">Delete</a></h3>
+            {% endfor %}
+        </div>
+    {% else %}
+    {% endif %}
+</body>
+</html>
